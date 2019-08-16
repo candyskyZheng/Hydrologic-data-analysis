@@ -6,6 +6,7 @@ from pygal.style import LightColorizedStyle as LCS, LightenStyle as LS
 r = input('请输入年份：')
 year = int(r[:4])
 
+# 日期（闰年or平年）
 def dates(year, date):
 	month = [1,2,3,4,5,6,7,8,9,10,11,12]
 	for i in month:
@@ -22,7 +23,7 @@ def dates(year, date):
 			for date_num4 in range(1,29) :
 				date.append('{}月{}日'.format(i, date_num4))
 
-
+# 数据开始位置
 how_much = 0
 for y in range(1961, year):
 	if y % 4 == 0 or y % 100 == 0 :
@@ -30,7 +31,7 @@ for y in range(1961, year):
 	else:
 		how_much += 365
 
-
+# 获得数据
 def search_data(data, how_much):
 	d = []
 	for line in open(r'D:\pycodes\PYTHON\水文\梅县日降水量.txt', encoding='utf-8'):
@@ -47,7 +48,7 @@ def search_data(data, how_much):
 			i = float(i)
 			data.append(i)
 
-
+# 柱状图
 def draw(date, data):
 	my_style = LS('#333366', base_style=LCS)
 	my_config = pygal.Config()
